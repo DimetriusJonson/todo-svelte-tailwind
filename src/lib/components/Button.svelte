@@ -2,16 +2,20 @@
     import { tv } from 'tailwind-variants';    
 
     const button = tv({
-    base: 'rounded-3xl cursor-pointer font-medium px-6 py-2 w-32 h-10',
+    base: 'rounded-3xl cursor-pointer font-medium px-4 py-2 h-10',
     variants: {
         color: {
             primary: 'bg-primary hover:bg-primary/80 text-black',
             light: 'bg-gray-200 dark:hover:bg-gray-50 hover:bg-gray-300 text-black',
             danger: 'bg-danger hover:bg-danger/80 text-black'
         },
-        size: {
+        textSize: {
             sm: 'text-sm',
             md: 'text-base',
+        },
+        buttonWidth: {
+            auto: 'w-auto',
+            md: 'w-32',
         },
         loading: {
             true: 'inline-flex justify-center items-center leading-6 transition ease-in-out duration-150',
@@ -33,7 +37,8 @@
         id = null,
         loading = false,
         color = 'primary', 
-        size = 'md', 
+        textSize = 'md',
+        buttonWidth = 'md', 
         class: customClass = "",
         disabled = false,
         label,
@@ -45,7 +50,7 @@
     bind:this={buttonElement}
     {id}
     aria-label={label}
-    class={button({ color, size, loading, disabled: loading || disabled, class: customClass })}
+    class={button({ color, textSize, buttonWidth, loading, disabled: loading || disabled, class: customClass })}
     onclick={(event) => onclick(event)}
     onmouseup={() => buttonElement.blur()}
     disabled={disabled || loading}

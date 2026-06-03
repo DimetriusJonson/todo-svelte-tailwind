@@ -62,7 +62,7 @@
                     }}
                 />
                 <noscript>
-                    <Button color="light" label="Ok" />
+                    <Button color="light" label="Ok" buttonWidth="auto" class="text-xs md:text-base" />
                 </noscript>
             </span>
             {#if data.user}

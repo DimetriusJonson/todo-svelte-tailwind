@@ -17,8 +17,12 @@
 
 <noscript>
     <style>
-        .no-script-navbar-menu {
+        .no-script-mobile-menu {
             display: block;
+        }
+
+        .no-script-desktop-menu {
+            display: none;
         }
     </style>
 </noscript>
@@ -105,7 +109,7 @@
 
 
                 <!-- Desktop Navigation Links (Hidden on mobile) -->
-                <div class="hidden md:flex md:space-x-4 md:items-center">
+                <div class="hidden md:flex md:space-x-4 md:items-center no-script-desktop-menu">
                     {@render userButtons("desktop")}
                 </div>
             </div>
@@ -115,7 +119,7 @@
     <!-- Mobile Menu Dropdown (Controlled via JavaScript) -->
     <div
         id="mobile-menu"
-        class={`md:hidden bg-primary left-0 right-0 top-fu z-50 ${!navLinksActive ? "hidden" : ""}`}
+        class={`md:hidden bg-primary left-0 right-0 top-fu z-50 ${!navLinksActive ? "hidden" : ""} no-script-mobile-menu`}
     >
         <div class="py-4">
             {@render userButtons("mobile")}

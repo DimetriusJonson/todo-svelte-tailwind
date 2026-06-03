@@ -35,13 +35,13 @@
                     <p class="text-2xl font-monospace font-bold">
                         {task?.title}
                     </p>
-                    <p class="text-base text-gray-300">
+                    <p class="text-base text-gray-700 dark:text-gray-300">
                         {taskPriorityName(task ?? {})}
                     </p>
                 </div>
             </div>
 
-            <div class="prose pt-4 text-gray-300">
+            <div class="prose pt-4 text-gray-700 dark:text-gray-300">
                 {#if task?.description}
                     <p>{task?.description}</p>
                 {/if}
