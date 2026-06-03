@@ -35,7 +35,7 @@
             in:receive={{ key: message.id }}
             out:send={{ key: message.id }}
         >
-            <span class={"inline-flex items-center justify-center px-2.5 py-1 text-base font-semibold rounded text-black space-x-2 " + msg_style(message)}>
+            <span class={"inline-flex items-center justify-center px-2.5 py-1 text-base rounded text-black space-x-2 " + msg_style(message)}>
                 <span class="pr-2">{message.msg}</span>
                 <button
                     aria-label="x"
