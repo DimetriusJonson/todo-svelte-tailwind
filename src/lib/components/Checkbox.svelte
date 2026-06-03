@@ -21,13 +21,23 @@
     name={name}
     {title}
     onchange={checkOnChange}
-    class={`mr-2 w-7 h-7 cursor-pointer appearance-none rounded-[4px] border 
-    border-gray-500 
-    hover:border-primary
-    checked:border-primary
-    checked:bg-yellow-200
-    outline-hidden checked:relative
-       checked:before:absolute checked:before:top-[-3px] checked:before:-right-px 
-     checked:before:text-2xl checked:before:text-gray-900 checked:before:content-['✔']`}
+    class={`w-7 h-7 cursor-pointer appearance-none rounded-[4px] border 
+        border-gray-500 
+        hover:border-primary
+        checked:border-primary
+        checked:bg-yellow-200
+        outline-hidden 
+
+        text-2xl 
+        text-gray-900 
+        
+        checked:relative
+        
+        checked:before:absolute
+        checked:before:top-[-0.2vw]
+        checked:before:left-[-0.1vw]
+        checked:before:content-['✔']
+
+    `}
     />
 </div>
