@@ -71,7 +71,7 @@
             />
           </td>
           <td class="px-4 py-2"
-            ><a class="text-link" href={"/task/" + task.id} aria-label={task.title}>{task.title}</a></td
+            ><a class="text-link dark:text-link-dark" href={"/task/" + task.id} aria-label={task.title}>{task.title}</a></td
           >
           <td class="px-4 py-2 hidden md:block">{task.description}</td>
         </tr>

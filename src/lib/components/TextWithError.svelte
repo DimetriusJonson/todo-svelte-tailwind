@@ -61,5 +61,5 @@
 </div>
 
 {#each errors as issue}
-    <p class="mt-1 text-xs text-danger dark:text-danger">{issue.message}</p>
+    <p class="mt-1 text-xs text-pink-700 dark:text-danger">{issue.message}</p>
 {/each}

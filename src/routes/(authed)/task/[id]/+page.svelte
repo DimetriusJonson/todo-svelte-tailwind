@@ -24,24 +24,24 @@
             <!-- media -->
             <div class="flex items-start gap-4">
                 <!-- media-left -->
-                <div class="shrink-0">
+                <div class="shrink-0 text-4xl">
                     {#if task?.completed}
-                        <span class="text-4xl">{"✅"}</span>
+                        <span>{"✅"}</span>
                     {:else}
-                        <span class="text-4x1">{"❌"}</span>
+                        <span>{"❌"}</span>
                     {/if}
                 </div>
                 <div>
-                    <p class="text-3xl font-mono font-extrabold">
+                    <p class="text-2xl font-monospace font-bold">
                         {task?.title}
                     </p>
-                    <p class="text-2xl">
+                    <p class="text-base text-gray-300">
                         {taskPriorityName(task ?? {})}
                     </p>
                 </div>
             </div>
 
-            <div class="prose pt-4">
+            <div class="prose pt-4 text-gray-300">
                 {#if task?.description}
                     <p>{task?.description}</p>
                 {/if}

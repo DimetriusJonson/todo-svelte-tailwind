@@ -22,5 +22,5 @@
 />
 
 {#each errors as issue}
-    <p class="mt-1 px-2 text-xs text-pink-800 dark:text-danger">{issue.message}</p>
+    <p class="mt-1 px-2 text-xs text-pink-700 dark:text-danger">{issue.message}</p>
 {/each}
