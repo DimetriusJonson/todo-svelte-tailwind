@@ -13,10 +13,18 @@
         hover:border-primary
         checked:border-primary
         checked:bg-yellow-200
-        outline-hidden checked:relative
-        checked:before:absolute checked:before:top-[-3px] checked:before:-right-px 
+        outline-hidden 
+        checked:relative
+
         checked:before:text-2xl 
-        checked:before:text-gray-900 checked:before:content-['✔']`}
+        checked:before:text-gray-900 
+
+        checked:before:absolute
+        checked:before:top-[-0.2vw]
+        checked:before:left-[-0.1vw]
+        checked:before:content-['✔']
+
+        `}
     />
     <label
         for={name.toLowerCase().replaceAll(" ", "")}
