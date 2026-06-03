@@ -73,6 +73,7 @@
                     label="Пользователи"
                     href="/users"
                     color="black"
+                    buttonWidth="auto"
                 />
             </div>
 

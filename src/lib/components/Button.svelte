@@ -2,7 +2,7 @@
     import { tv } from 'tailwind-variants';    
 
     const button = tv({
-    base: 'rounded-3xl cursor-pointer font-medium px-4 py-2 h-10',
+    base: 'rounded-3xl cursor-pointer font-medium px-6 py-2 h-10',
     variants: {
         color: {
             primary: 'bg-primary hover:bg-primary/80 text-black',

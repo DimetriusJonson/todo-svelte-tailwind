@@ -22,9 +22,9 @@
         <!-- Message Body -->
         <div class="border-t border-neutral-700 px-5 py-4 text-neutral-800 dark:text-neutral-100">
             <!-- media -->
-            <div class="flex items-start gap-4">
+            <div class="flex items-start gap-4 font-monospace font-bold">
                 <!-- media-left -->
-                <div class="shrink-0 text-4xl">
+                <div class="text-4xl pt-2">
                     {#if task?.completed}
                         <span>{"✅"}</span>
                     {:else}
@@ -32,7 +32,7 @@
                     {/if}
                 </div>
                 <div>
-                    <p class="text-2xl font-monospace font-bold">
+                    <p class="text-2xl">
                         {task?.title}
                     </p>
                     <p class="text-base text-gray-700 dark:text-gray-300">
