@@ -63,9 +63,9 @@
               className="is-medium"
               name={"completed_" + task.id}
               value={task.completed}
-              title={task.completed_at
-                ? new Date(task.completed_at).toLocaleString()
-                : ""}
+              title={task.completed && task.completed_at
+                ? "Завершена " + new Date(task.completed_at).toLocaleString()
+                : "Не завершена"}
               disabled={changeCompletedInProgress}
               onChange={onChangeCompleted}
             />
