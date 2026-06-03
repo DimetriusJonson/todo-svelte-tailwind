@@ -115,7 +115,7 @@
     <!-- Mobile Menu Dropdown (Controlled via JavaScript) -->
     <div
         id="mobile-menu"
-        class={`md:hidden absolute  bg-yellow-500 left-0 right-0 top-fu z-50 ${!navLinksActive ? "hidden" : ""}`}
+        class={`md:hidden bg-primary left-0 right-0 top-fu z-50 ${!navLinksActive ? "hidden" : ""}`}
     >
         <div class="py-4">
             {@render userButtons("mobile")}

@@ -52,7 +52,7 @@
             <!-- level-left -->
             <div class="flex items-center justify-start gap-4">
                 <!-- level-item -->
-                <div class="flex items-center justify-center shrink-0">
+                <div class="flex items-center justify-center">
                     <SelectWithLabel
                         {...sourceForm.fields.priority.as(
                             "text",

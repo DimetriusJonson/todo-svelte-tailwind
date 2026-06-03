@@ -36,13 +36,13 @@
             out:send={{ key: message.id }}
         >
             <span class={"inline-flex items-center justify-center px-2.5 py-1 text-base font-semibold rounded text-black space-x-2 " + msg_style(message)}>
-                {message.msg}
+                <span class="pr-2">{message.msg}</span>
                 <button
                     aria-label="x"
-                    class="inline-flex items-center justify-center w-4 h-4 rounded-full bg-black/20 hover:bg-black/30 text-white text-xs cursor-po"
+                    class="items-center justify-right size-4 rounded-full bg-black/20 hover:bg-black/30 text-white text-xs cursor-pointer"
                     id={"m_" + message.id}
                     {onclick}
-                >&nbsp;&times;</button>
+                >&times;</button>
             </span>
         </p>
     {/each}

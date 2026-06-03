@@ -68,7 +68,7 @@
             {#if data.user}
                 <ButtonLink
                     color="light"
-                    class="mr-2"
+                    class="mr-2 text-xs md:text-base"
                     href="/task/create"
                     id="create_button"
                     label="+"
