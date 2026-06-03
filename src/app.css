@@ -1,0 +1,11 @@
+@import "tailwindcss";
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+@theme {
+  --color-primary: hsl(39deg 90% 52%);
+  --color-danger: hsl(357deg 77% 70%);
+  --color-danger-bg: rgb(41, 5, 7);
+  --color-dark-bg: hsl(221deg, 14%, 9%);
+  --color-link: hsla(233deg, 100%, 73%, 1);
+}

@@ -1,0 +1,24 @@
+import { redirect, type Handle } from '@sveltejs/kit';
+import { building } from '$app/environment';
+import type { User } from '$lib/model/User.svelte';
+import { parseJwtToken } from '$lib/server/jwt';
+
+export const handle: Handle = async ({ event, resolve }) => {
+    if (building) {
+        return await resolve(event);
+    }
+
+    const routeId = event.route.id;
+
+    let authData = parseJwtToken(event.cookies.get('todo-token'));
+    if (!authData) {
+        if (!event.url.pathname.startsWith('/login') && (routeId?.includes('(authed)'))) {
+            throw redirect(303, '/login?redirectTo=' + event.url.pathname);
+        }
+    }
+
+    event.locals.user = { id: authData?.userId, name: authData?.userName } as User;
+    const response = await resolve(event);
+
+    return response;
+};
