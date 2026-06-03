@@ -15,18 +15,16 @@
     });
 </script>
 
-<noscript>
-    <style>
-        .no-script-mobile-menu {
+<style lang="css">
+    @media (scripting: none) {
+        #mobile-menu {
             display: block;
         }
-
-        .no-script-desktop-menu {
+        #desktop-menu {
             display: none;
         }
-    </style>
-</noscript>
-
+    }
+</style>
 
 <nav class="w-full relative bg-primary">
 
@@ -109,7 +107,7 @@
 
 
                 <!-- Desktop Navigation Links (Hidden on mobile) -->
-                <div class="hidden md:flex md:space-x-4 md:items-center no-script-desktop-menu">
+                <div id="desktop-menu" class="hidden md:flex md:space-x-4 md:items-center">
                     {@render userButtons("desktop")}
                 </div>
             </div>
@@ -119,7 +117,7 @@
     <!-- Mobile Menu Dropdown (Controlled via JavaScript) -->
     <div
         id="mobile-menu"
-        class={`md:hidden bg-primary left-0 right-0 top-fu z-50 ${!navLinksActive ? "hidden" : ""} no-script-mobile-menu`}
+        class={`md:hidden bg-primary left-0 right-0 top-fu z-50 ${!navLinksActive ? "hidden" : ""}`}
     >
         <div class="py-4">
             {@render userButtons("mobile")}
