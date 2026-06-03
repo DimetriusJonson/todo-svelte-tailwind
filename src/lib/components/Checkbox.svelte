@@ -25,7 +25,7 @@
     checked:border-primary
     checked:bg-yellow-200
     outline-hidden checked:relative
-       checked:before:absolute checked:before:top-[-6px] checked:before:right-[-3px] 
+       checked:before:absolute checked:before:top-[-6px] checked:before:right-[-2px] 
      checked:before:text-2xl checked:before:text-gray-900 checked:before:content-['✔']`}
     />
     <span class="" {title}></span>
