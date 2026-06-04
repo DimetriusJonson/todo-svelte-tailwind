@@ -37,7 +37,7 @@
 
 <div class="container mx-auto pt-5 dark:text-gray-50 text-xs md:text-base">
     <form method="GET" action="?/">
-        <div class="flex justify-between pb-4 pl-4">
+        <div class="flex justify-between pb-4">
             <span class="flex space-x-4">
                 <SelectInput
                     name="filterSelect"
