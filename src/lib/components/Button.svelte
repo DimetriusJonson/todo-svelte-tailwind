@@ -1,5 +1,5 @@
 <script lang="ts">
-    import { tv } from 'tailwind-variants';    
+    import { tv, type VariantProps } from 'tailwind-variants';    
 
     const button = tv({
     base: 'rounded-3xl cursor-pointer font-medium px-6 py-2 h-10 transition-[background-color,border-color,box-shadow,color] duration-294',
@@ -28,10 +28,15 @@
     },
     defaultVariants: {
         size: 'md',
-        color: 'primary'
+        color: 'primary',
+        buttonWidth: 'auto',
+        loading: false,
+        disabled: false,
     }
     });    
 
+    type ButtonVariants = VariantProps<typeof button>;
+    
     let buttonElement: HTMLButtonElement;
     let {
         id = null,
@@ -50,7 +55,7 @@
     bind:this={buttonElement}
     {id}
     aria-label={label}
-    class={button({ color, textSize, buttonWidth, loading, disabled: loading || disabled, class: customClass })}
+    class={button({ color, textSize, buttonWidth, loading, disabled: loading || disabled, class: customClass } as ButtonVariants)}
     onclick={(event) => onclick(event)}
     onmouseup={() => buttonElement.blur()}
     disabled={disabled || loading}

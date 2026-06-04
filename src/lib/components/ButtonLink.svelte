@@ -1,5 +1,5 @@
 <script lang="ts">
-    import { tv } from 'tailwind-variants';    
+    import { tv, type VariantProps } from 'tailwind-variants';    
 
     const buttonLink = tv({
     base: 'rounded-3xl font-medium px-6 py-2 text-center transition-[background-color,border-color,box-shadow,color] duration-294',
@@ -25,6 +25,8 @@
     }
     });    
 
+    type ButtonLinkVariants = VariantProps<typeof buttonLink>;
+
     let {
         id = null,
         color = 'light', 
@@ -40,6 +42,6 @@
     {id}
     aria-label={label}
     {href}
-    class={buttonLink({ color, textSize, buttonWidth, class: customClass })}
+    class={buttonLink({ color, textSize, buttonWidth, class: customClass } as ButtonLinkVariants)}
     >{label}</a
 >

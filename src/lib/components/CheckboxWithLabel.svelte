@@ -28,8 +28,7 @@
     />
     <label
         for={name.toLowerCase().replaceAll(" ", "")}
-        class="cursor-pointer text-base text-gray-700 dark:text-gray-50"
-    >
+        class={"cursor-pointer text-base text-gray-700 dark:text-gray-50 ".concat(className)}>
         {label}
     </label>
 </div>

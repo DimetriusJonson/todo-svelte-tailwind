@@ -20,6 +20,7 @@
     checked={value}
     name={name}
     {title}
+    {disabled}
     onchange={checkOnChange}
     class={`w-7 h-7 cursor-pointer appearance-none rounded-[4px] border 
         border-gray-500 
@@ -40,6 +41,6 @@
         checked:before:left-[-0.1vw]
         checked:before:content-['✔']
 
-    `}
+    `.concat(className)}
     />
 </div>
