@@ -28,6 +28,8 @@
         checked:bg-yellow-200
         outline-hidden 
 
+        transition-[background-color,border-color,box-shadow,color] duration-294
+
         text-2xl 
         text-gray-900 
         

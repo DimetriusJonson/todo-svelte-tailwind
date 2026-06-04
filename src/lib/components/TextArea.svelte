@@ -23,6 +23,9 @@
         active:border-indigo-400 
         focus:outline-blue-200/20
 
+        transition-[background-color,border-color,box-shadow,color]
+        duration-294
+
         dark:text-gray-50 
         dark:placeholder-gray-400 
         dark:hover:ring-gray-500

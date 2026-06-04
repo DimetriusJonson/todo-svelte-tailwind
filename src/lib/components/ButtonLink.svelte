@@ -2,7 +2,7 @@
     import { tv } from 'tailwind-variants';    
 
     const buttonLink = tv({
-    base: 'rounded-3xl font-medium px-6 py-2 text-center',
+    base: 'rounded-3xl font-medium px-6 py-2 text-center transition-[background-color,border-color,box-shadow,color] duration-294',
     variants: {
         color: {
             ghost: 'text-link dark:text-link-dark',

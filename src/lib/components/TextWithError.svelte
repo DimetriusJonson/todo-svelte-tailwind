@@ -21,6 +21,9 @@
 
             focus:outline-4
             border
+
+            transition-[background-color,border-color,box-shadow,color]
+            duration-294
             
             hover:ring-gray-400
             hover:border-gray-400

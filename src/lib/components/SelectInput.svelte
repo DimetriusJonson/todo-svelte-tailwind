@@ -14,6 +14,10 @@
     <select
         class={`border rounded-lg block w-full p-2
             focus:outline-4
+
+            transition-[background-color,border-color,box-shadow,color]
+            duration-294
+
             focus:outline-blue-400/20
             dark:focus:outline-blue-200/20
             bg-white
