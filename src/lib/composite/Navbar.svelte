@@ -51,6 +51,7 @@
             </form>
         {:else}
             <ButtonLink
+                buttonWidth="auto"
                 color="brown"
                 label="Создать пользователя"
                 href="/createUser"
