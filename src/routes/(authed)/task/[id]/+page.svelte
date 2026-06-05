@@ -15,7 +15,7 @@
     <!-- Message -->
     <div class="rounded-md bg-neutral-100 dark:bg-neutral-800 text-sm overflow-hidden border border-neutral-700">
         <!-- Message Header -->
-        <div class="flex items-center justify-between bg-neutral-800 dark:bg-neutral-700 px-5 py-3 font-bold text-white dark:text-neutral-400">
+        <div class="flex items-center justify-between bg-neutral-800 dark:bg-neutral-700 px-5 py-3 font-bold text-white dark:text-neutral-300">
             <p>{"Сделать"}</p>
         </div>
 
