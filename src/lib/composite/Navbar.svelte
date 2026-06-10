@@ -30,37 +30,43 @@
 
     {#snippet userButtons(key: string | number)}
         {#if user?.name}
-            <form
-                {...logout.for(key).enhance(async ({ submit }) => {
-                    if (await submit()) {
-                        showInfo("Вы вышли!");
-                    }
-                })}
-            >
-                <input
-                    type="hidden"
-                    name="redirectTo"
-                    value={onServerRedirectTo}
-                />
-                <Button
-                    color="light"
-                    class="ml-2"
-                    label="Выйти"
-                    loading={logout.pending > 0}
-                />
-            </form>
+            <div class="flex items-center pl-2 py-2">
+                <form
+                    {...logout.for(key).enhance(async ({ submit }) => {
+                        if (await submit()) {
+                            showInfo("Вы вышли!");
+                        }
+                    })}
+                >
+                    <input
+                        type="hidden"
+                        name="redirectTo"
+                        value={onServerRedirectTo}
+                    />
+                    <Button
+                        color="light"
+                        class="ml-2"
+                        label="Выйти"
+                        loading={logout.pending > 0}
+                    />
+                </form>
+            </div>
         {:else}
-            <ButtonLink
-                buttonWidth="auto"
-                color="brown"
-                label="Создать пользователя"
-                href="/createUser"
-            />
-            <ButtonLink
-                color="light"
-                label="Войти"
-                href="/login"
-            />
+            <div class="flex items-center pl-2 py-2">
+                <ButtonLink
+                    buttonWidth="auto"
+                    color="brown"
+                    label="Создать пользователя"
+                    href="/createUser"
+                />
+            </div>
+            <div class="flex items-center pl-2 py-2">
+                <ButtonLink
+                    color="light"
+                    label="Войти"
+                    href="/login"
+                />
+            </div>
         {/if}
     {/snippet}                
 
