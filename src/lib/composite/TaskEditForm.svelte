@@ -23,7 +23,7 @@
                     showInfo("Задача сохранена");
                 }
                 sourceForm.fields.priority.set(null);
-                sourceForm.fields.completed.set(null);
+                sourceForm.fields.completed_at.set(null);
                 sourceForm.fields.title.set(null);
                 sourceForm.fields.description.set(null);
             }
@@ -32,12 +32,6 @@
 >
     <fieldset disabled={sourceForm.pending > 0}>
         <input type="hidden" name="id" value={task?.id} />
-
-        <input
-            type="hidden"
-            name="oldCompleted_at"
-            value={task?.completed_at}
-        />
 
         {#if sourceForm.result?.error}
             <div class="box">
@@ -70,9 +64,9 @@
                 <!-- level-item -->
                 <div class="flex items-center justify-center shrink-0">
                     <CheckboxWithLabel
-                        {...sourceForm.fields.completed.as(
+                        {...sourceForm.fields.completed_at.as(
                             "checkbox",
-                            task?.completed,
+                            task?.completed_at ? true : false,
                         )}
                         label="Завершена"
                     />

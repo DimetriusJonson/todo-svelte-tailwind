@@ -27,10 +27,9 @@
         completed: info.target.checked,
       });
 
-      let foundTask = tasks.find((t) => t.id === savedTask.id);
+      let foundTask = tasks.find((t) => t.id === savedTask?.id);
       if (foundTask) {
-        foundTask.completed_at = savedTask.completed_at;
-        foundTask.completed = savedTask.completed;
+        foundTask.completed_at = savedTask?.completed_at;
       }
 
       showInfo("Задача сохранена.");
@@ -62,8 +61,8 @@
             <Checkbox
               className="is-medium"
               name={"completed_" + task.id}
-              value={task.completed}
-              title={task.completed && task.completed_at
+              value={task.completed_at}
+              title={task.completed_at
                 ? "Завершена " + new Date(task.completed_at).toLocaleString()
                 : "Не завершена"}
               disabled={changeCompletedInProgress}

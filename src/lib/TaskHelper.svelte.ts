@@ -1,4 +1,4 @@
-import { MIN_COMPLETED_AT, type Task } from "./model/Task.svelte";
+import { type Task } from "./model/Task.svelte";
 
 export function priorityName(priority: string) {
     switch (priority) {
@@ -14,24 +14,12 @@ export function taskPriorityName(task: Task) {
     return priorityName(task.priority ?? '');
 }
 
-export function buildTaskCompletedAt(
-    completed: boolean,
-    completed_at: string,
-): string {
-    if (completed) {
-        return (completed_at ?? MIN_COMPLETED_AT) === MIN_COMPLETED_AT || completed_at.length == 0
-            ? new Date().toISOString()
-            : completed_at;
-    }
-    return MIN_COMPLETED_AT;
-}
-
 export function filterTask(t: Task, filter: string | null) {
     switch (filter ?? "") {
         case "Completed":
-            return t.completed;
+            return t.completed_at;
         case "Uncompleted":
-            return !t.completed;
+            return !t.completed_at;
         default:
             return true;
     }

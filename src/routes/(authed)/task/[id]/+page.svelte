@@ -25,7 +25,7 @@
             <div class="flex items-start gap-4 font-monospace font-bold">
                 <!-- media-left -->
                 <div class="text-4xl pt-2">
-                    {#if task?.completed}
+                    {#if task?.completed_at}
                         <span>{"✅"}</span>
                     {:else}
                         <span>{"❌"}</span>

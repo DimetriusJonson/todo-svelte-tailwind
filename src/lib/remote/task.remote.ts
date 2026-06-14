@@ -1,7 +1,7 @@
 import { command, form, getRequestEvent, prerender, query } from "$app/server";
-import { isTaskCompleted, MIN_COMPLETED_AT, type Task } from "$lib/model/Task.svelte";
+import { type Task } from "$lib/model/Task.svelte";
 import { dbDeleteTask, dbUpdateTask, findTaskById, findTasks, dbInsertTask, findTaskByTitle } from "$lib/server/dao/task.dao";
-import { buildTaskCompletedAt, filterTask, priorityName, sortTask } from "$lib/TaskHelper.svelte";
+import { filterTask, priorityName, sortTask } from "$lib/TaskHelper.svelte";
 import { error, redirect } from '@sveltejs/kit';
 import * as v from 'valibot';
 import { TaskSchema } from "./task.schema";
@@ -18,13 +18,11 @@ const TaskServerSchema = v.intersectAsync([TaskSchema, v.objectAsync({
     ),
 })]);
 
-export const createTask = form(TaskServerSchema, async ({ title, priority, completed, oldCompleted_at, description }) => {
+export const createTask = form(TaskServerSchema, async ({ title, priority, completed_at, description }) => {
     const event = getRequestEvent();
 
-    let completed_at = buildTaskCompletedAt(completed ? true : false, oldCompleted_at);
-
     let task = await dbInsertTask({
-        title, priority, completed_at, description
+        title, priority, completed_at: completed_at ? new Date().toISOString() : null, description
     } as Task, event.locals.user.id);
 
     redirect(302, '/task/' + task.id);
@@ -34,11 +32,10 @@ export const getTask = query(v.string(), async (id) => {
     const event = getRequestEvent();
 
     let task = await findTaskById(parseInt(id), event.locals.user.id);
-    if (task) {
-        task.completed = isTaskCompleted(task.completed_at);
-    } else {
+    if (!task) {
         error(404, `Задача не найдена!`);
     }
+
     return task;
 });
 
@@ -54,16 +51,14 @@ export const deleteTask = form(v.objectAsync({
     error(500, 'Cant delete task!');
 });
 
-export const updateTask = form(TaskServerSchema, async ({ id, title, priority, completed, oldCompleted_at, description }) => {
+export const updateTask = form(TaskServerSchema, async ({ id, title, priority, completed_at, description }) => {
     const event = getRequestEvent();
 
-    let completed_at = buildTaskCompletedAt(completed ? true : false, oldCompleted_at);
-
     let task = await dbUpdateTask({
-        id: parseInt(id), title, priority, completed_at, description
+        id: parseInt(id), title, priority, completed_at: completed_at ? new Date().toISOString() : null, description
     } as Task, event.locals.user.id);
 
-    redirect(302, '/task/' + task.id);
+    redirect(302, '/task/' + task?.id);
 });
 
 export const changeCompletedTask = command(v.object({
@@ -74,11 +69,10 @@ export const changeCompletedTask = command(v.object({
 
     let patch: Task = {
         id: id,
-        completed_at: completed ? new Date().toISOString() : MIN_COMPLETED_AT,
+        completed_at: completed ? new Date().toISOString() : null,
     };
 
-    let saved_task = await dbUpdateTask(patch, event.locals.user.id);
-    return {...saved_task, completed: isTaskCompleted(saved_task.completed_at) };
+    return await dbUpdateTask(patch, event.locals.user.id);
 });
 
 
@@ -115,13 +109,7 @@ export const getTasks = query(
     });
 
 function buildTasks(tasks: Task[], filter: string | null, sortKind: string | null): Task[] {
-    let result: Task[] = [];
-    tasks.forEach(task => {
-        task.completed = isTaskCompleted(task.completed_at);
-        result.push(task);
-    });
-
-    return result
+    return tasks
         .filter((t: Task) =>
             filterTask(t, filter ?? ""),
         )

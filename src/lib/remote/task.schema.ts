@@ -12,10 +12,7 @@ export const TaskSchema = v.object({
         v.string(),
         v.nonEmpty('Обязательно для заполнения.'),
     ),
-    oldCompleted_at: v.pipe(
-        v.string()
-    ),
-    completed: v.pipe(
+    completed_at: v.pipe(
         v.optional(v.boolean())
     ),
     description: v.pipe(

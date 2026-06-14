@@ -51,14 +51,24 @@ export async function findTasks(userId: number): Promise<Task[]> {
     return tasks;
 }
 
-export async function dbUpdateTask(patch: Task, userId: number): Promise<Task> {
-    await sql`UPDATE tasks 
-                SET title=COALESCE(${patch.title ?? null}, title),
-                    description=COALESCE(${patch.description ?? null}, description),
-                    priority=COALESCE(${patch.priority ?? null}, priority),
-                    completed_at=COALESCE(${patch.completed_at ?? null}, completed_at)
-                where id = ${patch.id ?? null} and user_id=${userId}`;
-    return patch;
+export async function dbUpdateTask(patch: Task, userId: number): Promise<Task | null> {
+    let task = await findTaskById(patch.id ?? 0, userId);
+    if (task) {
+        let completed_at = task.completed_at;
+        if ((patch.completed_at && !task.completed_at) || !patch.completed_at) {
+            completed_at = patch.completed_at;
+        }
+
+        await sql`UPDATE tasks 
+                    SET title=COALESCE(${patch.title ?? null}, title),
+                        description=COALESCE(${patch.description ?? null}, description),
+                        priority=COALESCE(${patch.priority ?? null}, priority),
+                        completed_at=${patch.completed_at ?? null}
+                    where id = ${patch.id ?? null} and user_id=${userId}`;
+        return patch;
+    }
+
+    return task;
 }
 
 export async function dbInsertTask(task: Task, userId: number): Promise<Task> {
