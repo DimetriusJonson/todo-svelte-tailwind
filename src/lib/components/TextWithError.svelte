@@ -54,6 +54,13 @@
             aria-invalid:dark:focus:border-danger 
             aria-invalid:dark:active:ring-danger 
             aria-invalid:dark:active:border-danger
+
+            disabled:text-weak
+            disabled:bg-disabled-bg
+            disabled:dark:border-bg-dark-bg
+            disabled:border-bg-white
+            disabled:placeholder:text-gray-500/30
+
         `}
         type={inputType}
         id={name}
