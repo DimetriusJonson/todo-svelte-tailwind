@@ -7,10 +7,11 @@
   import { changeCompletedTask } from "$lib/remote/task.remote";
   
   interface Props {
+    originalTasks: Task[];
     tasks: Task[];
   }
 
-  let { tasks }: Props = $props();
+  let { originalTasks, tasks }: Props = $props();
 
   let changeCompletedInProgress = $state(true);
   onMount(() => {
@@ -24,11 +25,11 @@
     changeCompletedInProgress = true;
     try {
       let id = parseInt(info.target.name.substring(info.target.name.indexOf("_") + 1));
-      let taskIndex = tasks.findIndex((t) => t.id === id);
+      let taskIndex = originalTasks.findIndex((t) => t.id === id);
 
       if (taskIndex >= 0) {
         let savedTask = await changeCompletedTask({id, completed});
-        tasks[taskIndex].completed_at = savedTask?.completed_at;
+        originalTasks[taskIndex].completed_at = savedTask?.completed_at;
         showInfo("Задача сохранена.");
       }
 

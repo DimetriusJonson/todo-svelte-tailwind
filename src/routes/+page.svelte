@@ -16,16 +16,23 @@
 
     let { data } = $props();
 
-    let filterSelect = $derived(page.url.searchParams.get("filterSelect"));
-    let sortSelect = $derived(page.url.searchParams.get("sortSelect"));
-
     let tasksSettings = localStore<TasksSettings>(
         "tasksSettings",
         {} as TasksSettings,
     );
 
+    let tasks = $state(
+        await getTasks({
+            filter: page.url.searchParams.get("filterSelect"),
+            sortKind: page.url.searchParams.get("sortSelect"),
+        }),
+    );
+
+    let filterSelect = $state(null);
+    let sortSelect = $state(null);
+
     let filteredTasks = $derived(
-        (await getTasks({ filter: filterSelect, sortKind: sortSelect }))
+        tasks
             .filter((t: Task) =>
                 filterTask(t, tasksSettings.value.filter ?? ""),
             )
@@ -62,7 +69,12 @@
                     }}
                 />
                 <noscript>
-                    <Button color="light" label="Ok" buttonWidth="auto" class="text-xs md:text-base" />
+                    <Button
+                        color="light"
+                        label="Ok"
+                        buttonWidth="auto"
+                        class="text-xs md:text-base"
+                    />
                 </noscript>
             </span>
             {#if data.user}
@@ -78,5 +90,5 @@
         </div>
     </form>
 
-    <TasksPanel tasks={filteredTasks} />
+    <TasksPanel originalTasks={tasks} tasks={filteredTasks} />
 </div>
