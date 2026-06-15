@@ -12,29 +12,29 @@
 
   let { tasks }: Props = $props();
 
+  let my_tasks = $derived(tasks);
+
   let changeCompletedInProgress = $state(true);
   onMount(() => {
     changeCompletedInProgress = false;
   });
 
   async function onChangeCompleted(info: any) {
+    let completed = info.target.checked;
+
+    info.target.checked = !info.target.checked;
     changeCompletedInProgress = true;
     try {
-      let savedTask = await changeCompletedTask({
-        id: parseInt(
-          info.target.name.substring(info.target.name.indexOf("_") + 1),
-        ),
-        completed: info.target.checked,
-      });
+      let id = parseInt(info.target.name.substring(info.target.name.indexOf("_") + 1));
+      let taskIndex = my_tasks.findIndex((t) => t.id === id);
 
-      let foundTask = tasks.find((t) => t.id === savedTask?.id);
-      if (foundTask) {
-        foundTask.completed_at = savedTask?.completed_at;
+      if (taskIndex >= 0) {
+        let savedTask = await changeCompletedTask({id, completed});
+        my_tasks[taskIndex].completed_at = savedTask?.completed_at;
+        showInfo("Задача сохранена.");
       }
 
-      showInfo("Задача сохранена.");
     } catch (error: any) {
-      info.target.checked = !info.target.checked;
       showError(error);
     } finally {
       changeCompletedInProgress = false;
@@ -52,8 +52,8 @@
     </tr>
   </thead>
   <tbody>
-    {#if tasks.length > 0}
-      {#each tasks as task (task.id)}
+    {#if my_tasks.length > 0}
+      {#each my_tasks as task (task.id)}
         <tr class="dark:even:bg-gray-800/30 border-b dark:border-gray-600">
           <td class="px-4 py-2">{priorityName(task.priority ?? "")}</td>
           <td class="px-4 py-2">
