@@ -12,8 +12,6 @@
 
   let { tasks }: Props = $props();
 
-  let my_tasks = $derived(tasks);
-
   let changeCompletedInProgress = $state(true);
   onMount(() => {
     changeCompletedInProgress = false;
@@ -26,11 +24,11 @@
     changeCompletedInProgress = true;
     try {
       let id = parseInt(info.target.name.substring(info.target.name.indexOf("_") + 1));
-      let taskIndex = my_tasks.findIndex((t) => t.id === id);
+      let taskIndex = tasks.findIndex((t) => t.id === id);
 
       if (taskIndex >= 0) {
         let savedTask = await changeCompletedTask({id, completed});
-        my_tasks[taskIndex].completed_at = savedTask?.completed_at;
+        tasks[taskIndex].completed_at = savedTask?.completed_at;
         showInfo("Задача сохранена.");
       }
 
@@ -52,8 +50,8 @@
     </tr>
   </thead>
   <tbody>
-    {#if my_tasks.length > 0}
-      {#each my_tasks as task (task.id)}
+    {#if tasks.length > 0}
+      {#each tasks as task (task.id)}
         <tr class="dark:even:bg-gray-800/30 border-b dark:border-gray-600">
           <td class="px-4 py-2">{priorityName(task.priority ?? "")}</td>
           <td class="px-4 py-2">
